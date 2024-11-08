@@ -165,12 +165,31 @@
 
     <script>
         function copyText(button) {
-            const adContent = button.nextElementSibling.textContent;
-            navigator.clipboard.writeText(adContent);
-            button.textContent = 'Disalin!';
-            setTimeout(() => {
-                button.textContent = 'Salin';
-            }, 2000);
+            try {
+                const adContent = button.parentElement.querySelector('.ad-content').textContent;
+                navigator.clipboard.writeText(adContent).then(() => {
+                    button.textContent = 'Disalin!';
+                    setTimeout(() => {
+                        button.textContent = 'Salin';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy:', err);
+                    // Fallback copy method
+                    const textarea = document.createElement('textarea');
+                    textarea.value = adContent;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    button.textContent = 'Disalin!';
+                    setTimeout(() => {
+                        button.textContent = 'Salin';
+                    }, 2000);
+                });
+            } catch (err) {
+                console.error('Copy failed:', err);
+                alert('Maaf, tidak dapat menyalin teks. Sila pilih dan salin secara manual.');
+            }
         }
     </script>
 </body>
