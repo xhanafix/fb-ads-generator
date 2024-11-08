@@ -83,7 +83,7 @@ def generate_pastor_copy(produk, masalah, kelebihan, target_market, benefits, ca
         f"Ramai pelanggan kami telah berjaya:\n"
         f"✨ Sarah dari KL: 'Dalam masa 30 hari, saya telah {...}'\n"
         f"✨ Ahmad dari JB: 'Tak sangka boleh {...}'\n\n"
-        f"���� TAWARAN EKSKLUSIF:\n"
+        f"TAWARAN EKSKLUSIF:\n"
         f"{produk} + Bonus Bernilai RM XXXX\n\n"
         f"Anda akan dapat:\n"
         f"✅ {benefits}\n"
@@ -163,20 +163,20 @@ def home():
             for i in range(10):
                 formula = random.choice(['AIDA', 'PAS', 'FAB', '4U', 'PASTOR', 'QUEST'])
                 if formula == 'AIDA':
-                    copy = generate_aida_copy(produk, kelebihan, target_market, call_to_action)
+                    ad_text = generate_aida_copy(produk, kelebihan, target_market, call_to_action)
                 elif formula == 'PAS':
-                    copy = generate_pas_copy(produk, masalah, kelebihan, call_to_action)
+                    ad_text = generate_pas_copy(produk, masalah, kelebihan, call_to_action)
                 elif formula == 'FAB':
-                    copy = generate_fab_copy(produk, features, advantages, benefits, call_to_action)
+                    ad_text = generate_fab_copy(produk, features, advantages, benefits, call_to_action)
                 elif formula == '4U':
-                    copy = generate_4u_copy(produk, kelebihan, target_market, masalah, benefits, call_to_action)
+                    ad_text = generate_4u_copy(produk, kelebihan, target_market, masalah, benefits, call_to_action)
                 elif formula == 'PASTOR':
-                    copy = generate_pastor_copy(produk, masalah, kelebihan, target_market, benefits, call_to_action)
+                    ad_text = generate_pastor_copy(produk, masalah, kelebihan, target_market, benefits, call_to_action)
                 else:
-                    copy = generate_quest_copy(produk, masalah, kelebihan, target_market, benefits, features, call_to_action)
-                generated_ads.append({'formula': formula, 'copy': copy})
+                    ad_text = generate_quest_copy(produk, masalah, kelebihan, target_market, benefits, features, call_to_action)
+                generated_ads.append({'formula': formula, 'copy': ad_text})
 
     return render_template('index.html', generated_ads=generated_ads)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0', port=8080) 
