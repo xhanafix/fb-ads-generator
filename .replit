@@ -1,5 +1,6 @@
-run = "python app.py"
 language = "python3"
+run = "python app.py"
+entrypoint = "app.py"
 
 [nix]
 channel = "stable-22_11"
