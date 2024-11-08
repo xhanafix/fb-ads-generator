@@ -98,19 +98,8 @@ class FBAdCopyGenerator:
             "✨ Limited slot untuk 24 jam je!"
         ]
 
-    def generate_ad_copies(self, product_name, usp, benefit_1, benefit_2, benefit_3):
+    def generate_ad_copies(self, product_name, usp, benefit_1, benefit_2, benefit_3, pain_points):
         variants = []
-        pain_points = [
-            "masalah yang sama",
-            "isu yang tak selesai-selesai",
-            "cabaran yang sama setiap hari",
-            "situasi yang buat stress",
-            "masalah yang dah lama tak selesai"
-        ]
-        
-        hashtags = "\n\n#PromosiTerhad #JanganTungguLagi #DealTerbaik #MurahMeriah #ReviewJujur"
-        
-        # Template names for each story type
         template_names = [
             "💫 Personal Story Style",
             "👥 Customer Testimony Style",
@@ -120,7 +109,7 @@ class FBAdCopyGenerator:
         ]
         
         # Generate 5 different variants
-        used_stories = list(enumerate(self.stories))  # Create a copy of stories list with indices
+        used_stories = list(enumerate(self.stories))
         for i in range(5):
             hook = random.choice(self.hooks)
             idx, story = used_stories.pop(random.randint(0, len(used_stories)-1))
@@ -135,6 +124,7 @@ class FBAdCopyGenerator:
                 pain_point=random.choice(pain_points)
             )
             
+            hashtags = "\n\n#PromosiTerhad #JanganTungguLagi #DealTerbaik #MurahMeriah #ReviewJujur"
             full_copy = f"{hook}\n\n{ad_copy}\n\n{call_to_action}{hashtags}"
             
             variants.append({
