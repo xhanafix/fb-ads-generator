@@ -14,11 +14,16 @@ def home():
             data['usp'],
             data['benefit1'],
             data['benefit2'],
-            data['benefit3']
+            data['benefit3'],
+            [  # Send array of pain points
+                data['pain_point1'],
+                data['pain_point2'],
+                data['pain_point3']
+            ]
         )
         return render_template('index.html', variants=variants)
     return render_template('index.html')
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8080))
-    app.run(host='0.0.0.0', port=port) 
+    app.run(host='0.0.0.0', port=port)
