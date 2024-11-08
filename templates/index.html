@@ -63,17 +63,6 @@
             font-size: 14px;
             margin-right: 10px;
         }
-        .guide-section {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            margin-top: 30px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .form-label {
-            font-weight: bold;
-            color: #1c1e21;
-        }
         .btn-generate {
             background-color: #1877f2;
             border: none;
@@ -99,34 +88,6 @@
                     <label class="form-label">Nama Produk/Perkhidmatan:</label>
                     <input type="text" name="produk" class="form-control" placeholder="cth: Kursus Digital Marketing" required>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Sasaran Pasaran:</label>
-                    <input type="text" name="target_market" class="form-control" placeholder="cth: usahawan online" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Masalah yang diselesaikan:</label>
-                    <input type="text" name="masalah" class="form-control" placeholder="cth: jualan tidak meningkat" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Kelebihan Produk:</label>
-                    <textarea name="kelebihan" class="form-control" rows="3" placeholder="cth: pembelajaran secara langsung, sokongan 24/7" required></textarea>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Ciri-ciri Produk:</label>
-                    <input type="text" name="features" class="form-control" placeholder="cth: 8 modul lengkap, sijil, komuniti eksklusif" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Kelebihan Berbanding Pesaing:</label>
-                    <input type="text" name="advantages" class="form-control" placeholder="cth: trainer berpengalaman 10 tahun" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Faedah kepada Pelanggan:</label>
-                    <input type="text" name="benefits" class="form-control" placeholder="cth: boleh jana pendapatan 5 angka sebulan" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Seruan Tindakan:</label>
-                    <input type="text" name="call_to_action" class="form-control" placeholder="cth: Daftar sekarang! Tempat terhad." required>
-                </div>
                 <button type="submit" class="btn btn-primary btn-generate w-100">Jana Iklan</button>
             </form>
         </div>
@@ -135,7 +96,7 @@
             <h3 class="mb-4">📝 10 Variasi Iklan Anda:</h3>
             {% for ad in generated_ads %}
                 <div class="ad-box">
-                    <span class="formula-badge">Formula {{ ad['formula'] }}</span>
+                    <span class="formula-badge">{{ ad['formula'] }}</span>
                     <button class="copy-btn" onclick="copyText(this)">Salin</button>
                     <div class="ad-content">{{ ad['copy']|safe }}</div>
                 </div>
@@ -145,21 +106,11 @@
         <div class="guide-section">
             <h3>📚 Panduan Penggunaan:</h3>
             <ol>
-                <li>Isi semua maklumat yang diperlukan dalam borang di atas</li>
+                <li>Masukkan nama produk atau perkhidmatan anda</li>
                 <li>Klik butang "Jana Iklan"</li>
-                <li>10 variasi iklan akan dijana menggunakan formula berbeza</li>
+                <li>10 variasi iklan akan dijana secara automatik</li>
                 <li>Salin dan gunakan untuk kempen Facebook anda!</li>
             </ol>
-
-            <h3>ℹ️ Formula yang digunakan:</h3>
-            <ul>
-                <li><strong>AIDA</strong>: Attention (Perhatian), Interest (Minat), Desire (Keinginan), Action (Tindakan)</li>
-                <li><strong>PAS</strong>: Problem (Masalah), Agitation (Kegelisahan), Solution (Penyelesaian)</li>
-                <li><strong>FAB</strong>: Features (Ciri), Advantages (Kelebihan), Benefits (Faedah)</li>
-                <li><strong>4U</strong>: Useful (Berguna), Urgent (Segera), Unique (Unik), Ultra-specific (Sangat Spesifik)</li>
-                <li><strong>PASTOR</strong>: Problem, Amplify, Story, Testimony, Offer, Response</li>
-                <li><strong>QUEST</strong>: Qualify, Understand, Educate, Stimulate, Transition</li>
-            </ul>
         </div>
     </div>
 
@@ -174,4 +125,4 @@
         }
     </script>
 </body>
-</html> 
+</html>
