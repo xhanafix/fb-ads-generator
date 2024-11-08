@@ -83,6 +83,7 @@ class FacebookAdGenerator:
         ]
 
     def generate_aida_formula(self):
+        """Attention, Interest, Desire, Action formula"""
         attention = random.choice(self.attention_grabbers).format(
             pain_point=random.choice(self.pain_points),
             benefit=random.choice(self.benefits)
@@ -93,12 +94,14 @@ class FacebookAdGenerator:
         return f"{attention}\n\n{interest}\n\n{desire}\n\n{action}"
 
     def generate_pas_formula(self):
+        """Problem, Agitation, Solution formula"""
         problem = f"Korang ada masalah {random.choice(self.pain_points)}?"
         agitation = f"Setiap hari yang berlalu, korang terlepas peluang untuk {random.choice(self.benefits)}."
         solution = f"{random.choice(self.features)} adalah jawapannya. {random.choice(self.social_proof)}.\n\n{random.choice(self.ctas)}"
         return f"{problem}\n\n{agitation}\n\n{solution}"
 
     def generate_bab_formula(self):
+        """Before, After, Bridge formula"""
         before = f"Masih {random.choice(self.pain_points)}?"
         after = f"Bayangkan kalau korang boleh {random.choice(self.benefits)}"
         bridge = f"{random.choice(self.features)} akan bantu korang! {random.choice(self.social_proof)}.\n\n{random.choice(self.ctas)}"
@@ -150,7 +153,7 @@ class FacebookAdGenerator:
         return variants
 
 def clear_screen():
-    os.system('cls' if os.name == 'nt' else 'clear')
+    print("\033[H\033[J", end="")
 
 def main():
     generator = FacebookAdGenerator()
@@ -188,4 +191,4 @@ def main():
             input("\nTekan Enter untuk teruskan...")
 
 if __name__ == "__main__":
-    main() 
+    main()
