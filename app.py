@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from src.fb_ad_copy_generator import FBAdCopyGenerator
+import os
 
 app = Flask(__name__)
 generator = FBAdCopyGenerator()
@@ -21,4 +22,7 @@ def generate():
     return jsonify(variants)
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    # Get port from environment variable or default to 8080
+    port = int(os.environ.get('PORT', 8080))
+    # Run the app on 0.0.0.0 to make it accessible externally
+    app.run(host='0.0.0.0', port=port) 
