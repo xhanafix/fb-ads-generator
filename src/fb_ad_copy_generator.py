@@ -1,135 +1,100 @@
 import random
 
-class FBAdCopyGenerator:
+class FacebookAdGenerator:
     def __init__(self):
-        self.hooks = [
-            "🤯 Kisah sebenar yang ramai tak tahu...",
-            "😱 Dulu saya pun macam korang...",
-            "💭 Pernah tak rasa macam ni?",
-            "🔥 Baru je semalam ada customer share pengalaman dia...",
-            "⚡ Plot twist yang tak disangka!",
-            "💝 Nak kongsi sesuatu yang special dengan korang...",
-            "🎯 Untuk korang yang selalu struggle dengan masalah ni...",
-            "💫 Cerita ni mesti ramai yang boleh relate...",
-            "🌟 RAHSIA yang viral di TikTok!",
-            "✨ Akhirnya... Penyelesaian yang korang tunggu dah sampai!"
+        self.headlines = [
+            "𝗠𝗘𝗝𝗔 𝗟𝗜𝗣𝗔𝗧 𝗣𝗢𝗥𝗧𝗔𝗕𝗟𝗘 𝗬𝗔𝗡𝗚 𝗦𝗘𝗥𝗕𝗔𝗚𝗨𝗡𝗔! 🔥",
+            "𝗠𝗘𝗝𝗔 𝗦𝗘𝗥𝗕𝗔𝗚𝗨𝗡𝗔 𝗨𝗡𝗧𝗨𝗞 𝗥𝗨𝗠𝗔𝗛 𝗔𝗡𝗗𝗔! 👍",
+            "𝗠𝗘𝗝𝗔 𝗣𝗢𝗥𝗧𝗔𝗕𝗟𝗘 𝗬𝗔𝗡𝗚 𝗠𝗨𝗗𝗔𝗛 𝗗𝗜𝗕𝗔𝗪𝗔! 💪",
+            "𝗠𝗘𝗝𝗔 𝗟𝗜𝗣𝗔𝗧 𝗬𝗔𝗡𝗚 𝗦𝗧𝗬𝗟𝗜𝗦𝗛 & 𝗣𝗥𝗔𝗞𝗧𝗜𝗞𝗔𝗟! ✨",
+            "𝗠𝗘𝗝𝗔 𝗦𝗔𝗠𝗣𝗜𝗡𝗚 𝗬𝗔𝗡𝗚 𝗠𝗘𝗡𝗝𝗜𝗠𝗔𝗧𝗞𝗔𝗡 𝗥𝗨𝗔𝗡𝗚! 🎯",
+            "𝗠𝗘𝗝𝗔 𝗣𝗢𝗥𝗧𝗔𝗕𝗟𝗘 𝗠𝗨𝗟𝗧𝗜𝗙𝗨𝗡𝗚𝗦𝗜! 🌟",
+            "𝗠𝗘𝗝𝗔 𝗟𝗜𝗣𝗔𝗧 𝗬𝗔𝗡𝗚 𝗠𝗢𝗗𝗘𝗥𝗡 & 𝗞𝗨𝗔𝗧! 💯",
+            "𝗠𝗘𝗝𝗔 𝗦𝗔𝗠𝗣𝗜𝗡𝗚 𝗬𝗔𝗡𝗚 𝗠𝗨𝗗𝗔𝗛 𝗗𝗜𝗦𝗜𝗠𝗣𝗔𝗡! 📦",
+            "𝗠𝗘𝗝𝗔 𝗣𝗢𝗥𝗧𝗔𝗕𝗟𝗘 𝗨𝗡𝗧𝗨𝗞 𝗦𝗘𝗠𝗨𝗔 𝗞𝗘𝗚𝗨𝗡𝗔𝗔𝗡! 🎊",
+            "𝗠𝗘𝗝𝗔 𝗟𝗜𝗣𝗔𝗧 𝗬𝗔𝗡𝗚 𝗕𝗘𝗥𝗞𝗨𝗔𝗟𝗜𝗧𝗜! ⭐"
         ]
         
-        self.stories = [
-            # Template 1: Personal Story
-            "Korang tau tak?\n\n"
-            "Dulu saya pun sama macam korang. Selalu struggle dengan {pain_point}. "
-            "Sampai satu hari tu, saya jumpa {product_name}.\n\n"
-            "Mula-mula memang ragu. Tapi lepas try sendiri... {usp}\n\n"
-            "Yang best pasal {product_name}:\n"
-            "✨ {benefit_1}\n"
-            "✨ {benefit_2}\n"
-            "✨ {benefit_3}\n\n"
-            "Sekarang dah ramai yang dah buktikan sendiri. "
-            "Testimoni masuk setiap hari! 😍\n\n"
-            "Kalau korang nak transform macam customer-customer lain...",
-            
-            # Template 2: Customer Testimony
-            "Semalam ada customer share pengalaman dia...\n\n"
-            "\"Dulu memang tak percaya sangat. Tapi lepas cuba {product_name}, "
-            "baru tau kenapa ramai cakap {usp}\"\n\n"
-            "Apa yang buat {product_name} ni special:\n"
-            "🌟 {benefit_1}\n"
-            "🌟 {benefit_2}\n"
-            "🌟 {benefit_3}\n\n"
-            "Tapi tu lah... ramai yang tunggu sampai sold out baru nak beli. "
-            "Lepas tu stress sebab kena waitlist pulak 🥺\n\n"
-            "Untuk yang serious nak upgrade...",
-            
-            # Template 3: Problem-Solution
-            "Korang pernah tak rasa macam ni?\n\n"
-            "➡️ Dah try macam-macam tapi tak berkesan\n"
-            "➡️ Dah habis duit tapi still sama je\n"
-            "➡️ Nak sesuatu yang betul-betul berbaloi\n\n"
-            "Good news! {product_name} dah sampai untuk selesaikan masalah tu.\n\n"
-            "{usp}\n\n"
-            "3 sebab kenapa {product_name} jadi pilihan ramai:\n"
-            "💫 {benefit_1}\n"
-            "💫 {benefit_2}\n"
-            "💫 {benefit_3}\n\n"
-            "Tapi ingat... stock limited je sebab permintaan tinggi!\n\n"
-            "Untuk yang tak nak missed out...",
-            
-            # Template 4: Viral Story
-            "RAHSIA yang ramai tak tau! 🤫\n\n"
-            "Kenapa {product_name} jadi viral sampai trending?\n\n"
-            "Sebab {usp}!\n\n"
-            "Tapi bukan tu je... Customer suka sebab:\n"
-            "⭐ {benefit_1}\n"
-            "⭐ {benefit_2}\n"
-            "⭐ {benefit_3}\n\n"
-            "Yang best, sekarang ada PROMOSI TERHAD!\n"
-            "Tapi kena cepat sebab ramai dah mula booking...\n\n"
-            "Untuk yang serious nak grab...",
-            
-            # Template 5: Before-After Story
-            "TRANSFORMASI yang tak masuk akal! 🎯\n\n"
-            "BEFORE:\n"
-            "❌ Struggle dengan {pain_point}\n"
-            "❌ Dah cuba macam-macam product\n"
-            "❌ Tak nampak hasil\n\n"
-            "AFTER cuba {product_name}:\n"
-            "✅ {benefit_1}\n"
-            "✅ {benefit_2}\n"
-            "✅ {benefit_3}\n\n"
-            "Rahsia dia? {usp}\n\n"
-            "Tapi kena cepat sebab stock terhad..."
+        self.testimonials = [
+            '"Sangat berguna untuk WFH! Mudah lipat dan simpan bila tak guna" ENCIK ADAM - SHAH ALAM',
+            '"Best sangat meja ni, ringan tapi kukuh. Boleh bawa kemana-mana!" PUAN SARAH - KL',
+            '"Design simple tapi cantik, sesuai dengan ruang rumah moden" KAK LISA - PUTRAJAYA',
+            '"Memang berbaloi dengan harga. Kualiti terjamin!" ENCIK RAHMAN - JOHOR',
+            '"Perfect untuk laptop dan kerja. Ketinggian pun sesuai" PUAN AMINAH - SELANGOR',
+            '"Senang nak bawa masa travel, ringan je!" ENCIK FAIZ - MELAKA',
+            '"Material premium, tak mudah rosak. Highly recommended!" KAK WAN - PERAK',
+            '"Sesuai untuk semua kegunaan, value for money!" ENCIK SYAFIQ - PENANG',
+            '"Design minimalis, sesuai dengan rumah moden" PUAN LINDA - SABAH',
+            '"Memang puas hati dengan kualiti meja ni!" ENCIK ZACK - SARAWAK'
         ]
         
-        self.cta = [
-            "📲 DM 'NAK INFO' sekarang! Nanti takde slot tau!\n\n"
-            "🎁 FREE GIFT untuk 50 orang yang first je!",
-            
-            "💝 Whatsapp admin sekarang untuk dapat SPECIAL PRICE!\n\n"
-            "🔥 Bonus eksklusif untuk yang grab hari ni!",
-            
-            "🌟 DM 'YES' untuk dapat full details + free gift!\n\n"
-            "⚡ Tawaran terhad untuk yang pantas je!",
-            
-            "💫 PM 'DEAL' untuk dapat harga special + free shipping!\n\n"
-            "🎯 Bonus rahsia untuk yang confirm hari ni!",
-            
-            "🎊 Comment 'MINE' untuk dapat FREE CONSULTATION!\n\n"
-            "✨ Limited slot untuk 24 jam je!"
+        self.benefits = [
+            "👉 Material Premium & Tahan Lasak",
+            "👉 Mudah Dilipat & Disimpan",
+            "👉 Ringan & Senang Dibawa",
+            "👉 Design Minimalis & Moden",
+            "👉 Sesuai Untuk Pelbagai Kegunaan",
+            "👉 Ketinggian Yang Ergonomik",
+            "👉 Jimat Ruang Penyimpanan",
+            "👉 Pemasangan Tanpa Alat",
+            "👉 Permukaan Anti Calar",
+            "👉 Kaki Anti Gelincir"
+        ]
+        
+        self.bonuses = [
+            "🎁 Percuma Beg Pembawa Eksklusif",
+            "🎁 Percuma Penghantaran Ke Seluruh Malaysia",
+            "🎁 Percuma Pad Anti Gelincir",
+            "🎁 Percuma Warranty 1 Tahun",
+            "🎁 Percuma Panduan Penjagaan",
+            "🎁 Percuma Gift Misteri",
+            "🎁 Percuma Cloth Pembersih Premium",
+            "🎁 Percuma Sticker Hiasan",
+            "🎁 Percuma Adjustment Pad",
+            "🎁 Percuma After Sales Support"
         ]
 
-    def generate_ad_copies(self, product_name, usp, benefit_1, benefit_2, benefit_3, pain_points):
-        variants = []
-        template_names = [
-            "💫 Personal Story Style",
-            "👥 Customer Testimony Style",
-            "❓ Problem-Solution Style",
-            "🔥 Viral Story Style",
-            "✨ Before-After Style"
+        self.closings = [
+            "P/S : Stok Terhad! Dapatkan Sekarang Dengan Harga Promosi 🔥",
+            "P/S : Lebih 1000+ Unit Terjual Dengan Review 5 Bintang ⭐",
+            "P/S : Jaminan Kepuasan Atau Wang Dikembalikan 💯",
+            "P/S : Promosi Terhad Untuk 50 Unit Pertama Sahaja!",
+            "P/S : Free Shipping Ke Seluruh Malaysia 🚚",
+            "P/S : Harga Promosi Untuk Masa Terhad Sahaja!",
+            "P/S : Stok Terhad Untuk Bulan Ini! Grab It Fast 🏃",
+            "P/S : Dapatkan Bonus Bernilai RM99 Secara Percuma!",
+            "P/S : Ready Stock! Same Day Delivery Available 📦",
+            "P/S : COD Available Untuk Sekitar Klang Valley 🚗"
         ]
+
+    def generate_ad_copy(self, business_name, whatsapp_link):
+        headline = random.choice(self.headlines)
+        testimonial = random.choice(self.testimonials)
+        closing = random.choice(self.closings)
         
-        # Generate 5 different variants
-        used_stories = list(enumerate(self.stories))
-        for i in range(5):
-            hook = random.choice(self.hooks)
-            idx, story = used_stories.pop(random.randint(0, len(used_stories)-1))
-            call_to_action = random.choice(self.cta)
-            
-            ad_copy = story.format(
-                product_name=product_name,
-                usp=usp,
-                benefit_1=benefit_1,
-                benefit_2=benefit_2,
-                benefit_3=benefit_3,
-                pain_point=random.choice(pain_points)
-            )
-            
-            hashtags = "\n\n#PromosiTerhad #JanganTungguLagi #DealTerbaik #MurahMeriah #ReviewJujur"
-            full_copy = f"{hook}\n\n{ad_copy}\n\n{call_to_action}{hashtags}"
-            
-            variants.append({
-                'name': template_names[idx],
-                'content': full_copy
-            })
+        # Randomly select 5-7 benefits
+        selected_benefits = random.sample(self.benefits, random.randint(5, 7))
+        # Randomly select 3-4 bonuses
+        selected_bonuses = random.sample(self.bonuses, random.randint(3, 4))
         
-        return variants
+        ad_copy = f"{headline} {business_name}? 😍\n\n"
+        ad_copy += ".\n.\n.\n\n"
+        ad_copy += f"{testimonial}\n\n"
+        ad_copy += "𝗞𝗘𝗡𝗔𝗣𝗔 𝗔𝗡𝗗𝗔 𝗣𝗘𝗥𝗟𝗨 𝗠𝗜𝗟𝗜𝗞𝗜 𝗠𝗘𝗝𝗔 𝗣𝗢𝗥𝗧𝗔𝗕𝗟𝗘 𝗜𝗡𝗜? 🤔\n\n"
+        
+        for benefit in selected_benefits:
+            ad_copy += f"{benefit}\n"
+            
+        ad_copy += "\n𝗕𝗢𝗡𝗨𝗦 𝗜𝗦𝗧𝗜𝗠𝗘𝗪𝗔 𝗨𝗡𝗧𝗨𝗞 𝗔𝗡𝗗𝗔! 🎁\n\n"
+        
+        for bonus in selected_bonuses:
+            ad_copy += f"{bonus}\n"
+            
+        ad_copy += f"\n{closing} 🤗\n\n"
+        ad_copy += "Berminat Untuk Dapatkan Meja Portable Ini? 🥰\n\n"
+        ad_copy += "Klik Link Atau Button 𝗪𝗮𝘀𝗮𝗽 Di Bawah 𝗦𝗘𝗞𝗔𝗥𝗔𝗡𝗚! 👇👇\n\n"
+        
+        for _ in range(3):
+            ad_copy += f"{whatsapp_link}\n\n"
+            
+        return ad_copy
