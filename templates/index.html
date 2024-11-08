@@ -42,6 +42,13 @@
                 <input type="text" name="benefit2" class="form-control mb-2" placeholder="Benefit 2: cth: Harga berpatutan" required>
                 <input type="text" name="benefit3" class="form-control" placeholder="Benefit 3: cth: Free shipping seluruh Malaysia" required>
             </div>
+
+            <div class="mb-4">
+                <label class="form-label">😫 Pain Points (Masalah yang dihadapi customer):</label>
+                <input type="text" name="pain_point1" class="form-control mb-2" placeholder="Pain Point 1: cth: Susah nak cari kopi yang betul-betul sedap" required>
+                <input type="text" name="pain_point2" class="form-control mb-2" placeholder="Pain Point 2: cth: Kopi biasa cepat membosankan" required>
+                <input type="text" name="pain_point3" class="form-control" placeholder="Pain Point 3: cth: Harga kopi premium terlalu mahal" required>
+            </div>
             
             <button type="submit" class="btn btn-primary w-100">Jana Copywriting</button>
         </form>
@@ -55,7 +62,7 @@
                     <div class="position-relative">
                         <pre class="bg-white p-3 rounded">{{ variant.content }}</pre>
                         <button class="btn btn-sm btn-primary position-absolute top-0 end-0 m-2 copy-btn" 
-                                onclick="copyText(this, `{{ variant.content|replace('`', '\`')|replace('\n', '\\n') }}`)">
+                                onclick="copyText(this, '{{ variant.content|replace("'", "\\'"|replace("\n", "\\n") }}')">
                             📋 Copy
                         </button>
                     </div>
