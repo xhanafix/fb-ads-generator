@@ -15,13 +15,16 @@
             padding: 20px;
             margin-bottom: 20px;
         }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
     </style>
 </head>
 <body>
     <div class="container py-5">
         <h1 class="text-center mb-4">🚀 Generator Copywriting FB Ads</h1>
         
-        <?php if (!isset($_POST['submit'])): ?>
         <form method="post" class="mb-4">
             <div class="mb-3">
                 <label class="form-label">🏷️ Nama Produk:</label>
@@ -40,58 +43,44 @@
                 <input type="text" name="benefit3" class="form-control" placeholder="Benefit 3: cth: Free shipping seluruh Malaysia" required>
             </div>
             
-            <button type="submit" name="submit" class="btn btn-primary w-100">Jana Copywriting</button>
+            <button type="submit" class="btn btn-primary w-100">Jana Copywriting</button>
         </form>
-        
-        <?php else:
-            require_once 'generator.php';
-            $generator = new FBAdCopyGenerator();
-            $variants = $generator->generate_ad_copies(
-                $_POST['product_name'],
-                $_POST['usp'],
-                $_POST['benefit1'],
-                $_POST['benefit2'],
-                $_POST['benefit3']
-            );
-            
-            foreach ($variants as $index => $variant):
-        ?>
-            <div class="variant-box">
-                <h5><?php echo $variant['name']; ?></h5>
-                <div class="position-relative">
-                    <pre class="bg-white p-3 rounded"><?php echo htmlspecialchars($variant['content']); ?></pre>
-                    <button class="btn btn-sm btn-primary position-absolute top-0 end-0 m-2 copy-btn" 
-                            data-copy="<?php echo htmlspecialchars($variant['content']); ?>">
-                        📋 Copy
-                    </button>
+
+        {% if variants %}
+        <div id="results-section" class="mt-4">
+            <div id="variants-container">
+                {% for variant in variants %}
+                <div class="variant-box">
+                    <h5>{{ variant.name }}</h5>
+                    <div class="position-relative">
+                        <pre class="bg-white p-3 rounded">{{ variant.content }}</pre>
+                        <button class="btn btn-sm btn-primary position-absolute top-0 end-0 m-2 copy-btn" 
+                                onclick="copyText(this, `{{ variant.content|replace('`', '\`')|replace('\n', '\\n') }}`)">
+                            📋 Copy
+                        </button>
+                    </div>
                 </div>
+                {% endfor %}
             </div>
-        <?php 
-            endforeach;
-        ?>
-        
-        <div class="text-center mt-4">
-            <form method="post">
-                <button type="submit" name="submit" class="btn btn-primary me-2">Jana Copy Baru</button>
-                <a href="index.php" class="btn btn-secondary">Reset</a>
-            </form>
+            
+            <div class="text-center mt-4">
+                <button onclick="window.location.reload()" class="btn btn-primary me-2">Jana Copy Baru</button>
+                <a href="/" class="btn btn-secondary">Reset</a>
+            </div>
         </div>
-        <?php endif; ?>
+        {% endif %}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.querySelectorAll('.copy-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const text = this.dataset.copy;
-                navigator.clipboard.writeText(text).then(() => {
-                    this.innerHTML = '✅ Copied!';
-                    setTimeout(() => {
-                        this.innerHTML = '📋 Copy';
-                    }, 2000);
-                });
+        function copyText(button, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                button.innerHTML = '✅ Copied!';
+                setTimeout(() => {
+                    button.innerHTML = '📋 Copy';
+                }, 2000);
             });
-        });
+        }
     </script>
 </body>
-</html> 
+</html>
